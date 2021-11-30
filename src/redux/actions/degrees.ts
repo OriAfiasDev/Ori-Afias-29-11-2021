@@ -1,5 +1,3 @@
-import { Dispatch } from 'react';
-import { Action, reduxTypes } from '..';
-import { Degrees } from '../reducers/degrees';
+import { reduxTypes } from '..';
 
-export const toggleDegrees = (currentDegrees: Degrees) => ({ type: reduxTypes.SET_DEGREES, payload: currentDegrees === 'celsius' ? 'fahrenheit' : 'celsius' });
+export const toggleDegrees = () => ({ type: reduxTypes.SET_DEGREES });

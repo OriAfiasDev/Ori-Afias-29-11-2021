@@ -7,3 +7,4 @@ interface State {
 }
 
 export const themeSelector = (state: State) => state.theme;
+export const degreesSelector = (state: State) => state.degrees;

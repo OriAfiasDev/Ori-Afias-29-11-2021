@@ -1,5 +1,3 @@
-import { Dispatch } from 'react';
-import { Action, reduxTypes } from '..';
-import { Theme } from '../reducers/theme';
+import { reduxTypes } from '..';
 
-export const toggleTheme = (currentTheme: Theme) => ({ type: reduxTypes.SET_THEME, payload: currentTheme === 'dark' ? 'light' : 'dark' });
+export const toggleTheme = () => ({ type: reduxTypes.SET_THEME });
