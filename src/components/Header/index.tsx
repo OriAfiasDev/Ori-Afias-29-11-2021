@@ -1,6 +1,6 @@
 import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import { Divider } from '@mui/material';
+
+import { AppBar, Divider } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { degreesSelector, themeSelector } from '../../redux/selectors';
 import { toggleTheme } from '../../redux/actions/theme';
@@ -31,8 +31,8 @@ export const Header = () => {
 
 	return (
 		<HeaderContainer>
-			<AppBar position='static' color='primary'>
-				<Toolbar>
+			<AppBar position='static' enableColorOnDark>
+				<Toolbar color='primary'>
 					<Logo />
 					<Row>
 						<NavIcon Icon={HomeIcon} onClick={() => navigate('/')} />
