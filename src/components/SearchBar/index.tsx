@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDebounce } from '../../hooks/useDebounce';
 import { getLocationAutocomplete } from '../../api';
-import { CircularProgress, FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput, TextField } from '@mui/material';
-import { Box } from '@mui/system';
+import { CircularProgress, Dialog, IconButton, InputAdornment, InputLabel, OutlinedInput, TextField } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import { Container, Form } from './Search.styled';
 import { SearchResults } from './SearchResults';
@@ -34,8 +33,9 @@ export const SearchBar: React.FC<Props> = ({ searchTerm, setSearchTerm }) => {
 			}
 		})();
 	}, [debounced]);
-
+	
 	return (
+		<Dialog open fullWidth maxWidth='sm' transitionDuration={300} PaperProps={{sx: { bgcolor: 'transparent'}}} >
 		<Container>
 			<Form variant='outlined'>
 				<InputLabel htmlFor='search-bar'>Find City</InputLabel>
@@ -50,9 +50,10 @@ export const SearchBar: React.FC<Props> = ({ searchTerm, setSearchTerm }) => {
 							<IconButton edge='end'>{loading ? <CircularProgress color='secondary' size={18} /> : <SearchIcon />}</IconButton>
 						</InputAdornment>
 					}
-				/>
+					/>
 			</Form>
 			<SearchResults results={cities} onResultClicked={console.log} />
 		</Container>
+					</Dialog>
 	);
 };

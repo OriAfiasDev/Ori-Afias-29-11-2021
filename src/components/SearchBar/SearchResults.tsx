@@ -11,11 +11,11 @@ export const SearchResults: React.FC<Props> = ({ results, onResultClicked }) => 
 			<List>
 				{results.map(res => (
 					<>
-						<ListItem key={res.key}>
+						<ListItem  key={res.key}>
 							<ListItemAvatar>
 								<Avatar>{res.country}</Avatar>
 							</ListItemAvatar>
-							<ListItemText primary={res.name} />
+							<ListItemText primary={res.name}  />
 						</ListItem>
 						<Divider variant='inset' />
 					</>
