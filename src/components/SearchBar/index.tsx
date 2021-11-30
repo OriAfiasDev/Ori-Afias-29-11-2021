@@ -3,7 +3,7 @@ import { useDebounce } from '../../hooks/useDebounce';
 import { getLocationAutocomplete } from '../../api';
 import { CircularProgress, Dialog, IconButton, InputAdornment, InputLabel, OutlinedInput, TextField } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
-import { Container, Form } from './Search.styled';
+import { BlurredBackdrop, Container, Form } from './Search.styled';
 import { SearchResults } from './SearchResults';
 
 interface Props {
@@ -35,7 +35,7 @@ export const SearchBar: React.FC<Props> = ({ searchTerm, setSearchTerm }) => {
 	}, [debounced]);
 	
 	return (
-		<Dialog open fullWidth maxWidth='sm' transitionDuration={300} PaperProps={{sx: { bgcolor: 'transparent'}}} >
+		<Dialog BackdropComponent={BlurredBackdrop} open fullWidth maxWidth='sm' transitionDuration={300} PaperProps={{sx: { bgcolor: 'transparent'}}} >
 		<Container>
 			<Form variant='outlined'>
 				<InputLabel htmlFor='search-bar'>Find City</InputLabel>
