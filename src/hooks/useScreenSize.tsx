@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 
-type UseWidthType = { width: number; height: number };
+type UseScreenSizeType = { width: number; height: number };
 
-export const useWidth = (): UseWidthType => {
+export const useScreenSize = (): UseScreenSizeType => {
 	const [width, setWidth] = useState(window.innerWidth);
 	const [height, setHeight] = useState(window.innerHeight);
 
