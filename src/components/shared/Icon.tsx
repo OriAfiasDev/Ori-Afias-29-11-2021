@@ -21,6 +21,6 @@ export const NavIcon: React.FC<Props> = ({ onClick, Icon, badgeContent }) => {
 	);
 };
 
-const Container = styled(Box)({ backgroundColor: 'rgba(0,0,0,0.2)', borderRadius: 10 });
+const Container = styled(Box)({ backgroundColor: 'rgba(0,0,0,0.2)', borderRadius: 10 , marginLeft: 4, marginRight: 4});
 
-const Button = styled(IconButton)({ borderRadius: 10, cursor: 'pointer' });
+const Button = styled(IconButton)({ borderRadius: 10 ,cursor: 'pointer' });

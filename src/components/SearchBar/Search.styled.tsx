@@ -10,9 +10,9 @@ export const ListContainer = styled(Box)({  });
 
 export const List = styled(MuiList)({ bgcolor: 'background.paper' });
 
-export const BlurredBackdrop: ElementType<BackdropProps<"span", {}>> = styled(Backdrop)({backdropFilter: 'blur(1px)'});
+// export const BlurredBackdrop2 = styled(Backdrop)({backdropFilter: 'blur(1px)'});
 
-export const BlurredBackdrop1 = styled(Backdrop, { name: 'MuiModal', slot: 'Backdrop', overridesResolver: (props, styles) => { return styles.backdrop; }, })({ backdropFilter: 'blur(1px)' })
+export const BlurredBackdrop = styled(Backdrop, { name: 'MuiModal', slot: 'Backdrop', overridesResolver: (props, styles) => { return styles.backdrop; }, })({ backdropFilter: 'blur(1px)' })
 
 const NoHoverListItem = styled(MuiLI)(({theme}) =>({ backgroundColor: theme.palette.secondary, cursor: 'pointer', borderRadius: 10, transition: 'opacity 0.5s' }));
 
