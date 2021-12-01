@@ -20,11 +20,11 @@ export const Nav: React.FC = () => {
 
 	const handleThemeChange = React.useCallback(() => {
 		dispatch(toggleTheme());
-	}, []);
+	}, [dispatch]);
 
 	const handleDegreesChange = React.useCallback(() => {
 		dispatch(toggleDegrees());
-	}, []);
+	}, [dispatch]);
 
 	return (
 		<Row>

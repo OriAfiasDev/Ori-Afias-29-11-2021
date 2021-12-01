@@ -3,6 +3,7 @@ import { AutoCompleteResult } from '../models/LocationAutoComplete';
 import apikey from './apiKey';
 import mockAutoComplete from '../mock/autoCompleteResult.json';
 import mockCurrentWeather from '../mock/currentWeatherResult.json';
+import { CurrentWeatherResult } from '../models/CurrentWeather';
 
 const baseUrl = 'http://dataservice.accuweather.com';
 const version = 'v1';
@@ -18,7 +19,7 @@ interface Response<T> {
 	message: string;
 }
 
-export const getCurrentWeather = async (locationKey: string) => {
+export const getCurrentWeather = async (locationKey: string): Promise<CurrentWeatherResult[]> => {
 	// const { data } = await api.get(`/currentconditions/${version}/${locationKey}`);
 	return mockCurrentWeather;
 };

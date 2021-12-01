@@ -3,15 +3,17 @@ import { Degrees } from '../redux/reducers/degrees';
 export interface CurrentWeatherResult {
 	LocalObservationDateTime: string;
 	EpochTime: number;
-	WeatherText: string; //possibly enum
-	WeatherIcon: number; //possible enum
+	WeatherText: string;
+	WeatherIcon: number | null;
 	HasPrecipitation: boolean;
-	PrecipitationType: null; //???
+	PrecipitationType: PrecipitationType;
 	IsDayTime: boolean;
 	Temperature: Temperature;
 	MobileLink: string;
 	Link: string;
 }
+
+type PrecipitationType = 'Rain' | 'Snow' | 'Ice' | 'Mixed' | null;
 
 interface Temperature {
 	Metric: TemperatureValue;
@@ -20,6 +22,6 @@ interface Temperature {
 
 interface TemperatureValue {
 	Value: number;
-	Unit: Degrees;
+	Unit: string;
 	UnitType: number;
 }
