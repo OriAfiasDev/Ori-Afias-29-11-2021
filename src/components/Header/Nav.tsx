@@ -34,7 +34,7 @@ export const Nav: React.FC = () => {
 
 			<NavIcon Icon={theme === 'light' ? DarkModeIcon : LightModeIcon} onClick={handleThemeChange} />
 
-			<NavIcon Icon={DeviceThermostatIcon} onClick={handleDegreesChange} badgeContent={degrees[0].toUpperCase()} />
+			<NavIcon Icon={DeviceThermostatIcon} onClick={handleDegreesChange} badgeContent={degrees} />
 		</Row>
 	);
 };

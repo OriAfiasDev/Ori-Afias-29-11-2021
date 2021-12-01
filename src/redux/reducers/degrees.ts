@@ -1,11 +1,11 @@
 import { Action, reduxTypes } from '..';
 
-export type Degrees = 'celsius' | 'fahrenheit';
+export type Degrees = 'C' | 'F';
 
-export const degreesReducer = (state: Degrees = 'celsius', action: Action<null>) => {
+export const degreesReducer = (state: Degrees = 'C', action: Action<null>) => {
 	switch (action.type) {
 		case reduxTypes.SET_DEGREES:
-			return state === 'celsius' ? 'fahrenheit' : 'celsius';
+			return state === 'C' ? 'F' : 'C';
 		default:
 			return state;
 	}

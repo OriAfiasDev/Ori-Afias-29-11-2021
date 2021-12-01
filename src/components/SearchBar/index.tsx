@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDebounce } from '../../hooks/useDebounce';
-import { getLocationAutocomplete } from '../../api';
+import { getCurrentWeather, getLocationAutocomplete } from '../../api';
 import { Button } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import { Dialog, Form } from './Search.styled';
@@ -43,8 +43,10 @@ export const SearchBar: React.FC<Props> = ({ searchTerm, setSearchTerm }) => {
 		setDialogOpen(true);
 	};
 
-	const onResultSelected = (result: string) => {
-		setSearchTerm(result);
+	const onResultSelected = async (result: string) => {
+		// setSearchTerm(result);
+		const res = await getCurrentWeather(result);
+		console.log(res);
 		setDialogOpen(false);
 	};
 

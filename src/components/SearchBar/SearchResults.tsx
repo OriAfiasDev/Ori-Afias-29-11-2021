@@ -11,7 +11,7 @@ export const SearchResults: React.FC<Props> = ({ results, onResultClicked }) => 
 		<Box>
 			<List>
 				{results.map(res => (
-					<div onClick={() => onResultClicked(`${res.name}`)} key={res.key}>
+					<div onClick={() => onResultClicked(res.key)} key={res.key}>
 						<ListItem>
 							<ListItemAvatar>
 								<Avatar>{res.country}</Avatar>
