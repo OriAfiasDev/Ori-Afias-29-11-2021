@@ -1,23 +1,20 @@
-import { Backdrop, BackdropProps, FormControl, List as MuiList, ListItem as MuiLI } from '@mui/material';
-import { Box, styled } from '@mui/system';
-import { ElementType } from 'react';
+import { FormControl, List as MuiList, ListItem as MuiLI, Dialog as MuiDialog } from '@mui/material';
+import { styled } from '@mui/system';
 
-export const Container = styled(Box)({ display: 'flex', flexDirection: 'column', margin: '10px 20px' });
-
-export const Form = styled(FormControl)({ m: 1 });
-
-export const ListContainer = styled(Box)({  });
+export const Form = styled(FormControl)({ width: '100%' });
 
 export const List = styled(MuiList)({ bgcolor: 'background.paper' });
 
-// export const BlurredBackdrop2 = styled(Backdrop)({backdropFilter: 'blur(1px)'});
+export const ListItemNoHover = styled(MuiLI)(({ theme }) => ({
+	backgroundColor: theme.palette.secondary,
+	cursor: 'pointer',
+	borderRadius: 10,
+}));
 
-export const BlurredBackdrop = styled(Backdrop, { name: 'MuiModal', slot: 'Backdrop', overridesResolver: (props, styles) => { return styles.backdrop; }, })({ backdropFilter: 'blur(1px)' })
+export const ListItem = styled(ListItemNoHover)`
+	&:hover {
+		background-color: #ccc;
+	}
+`;
 
-const NoHoverListItem = styled(MuiLI)(({theme}) =>({ backgroundColor: theme.palette.secondary, cursor: 'pointer', borderRadius: 10, transition: 'opacity 0.5s' }));
-
-export const ListItem = styled(NoHoverListItem)`
-    &:hover {
-        opacity: 1;
-    }
-`
+export const Dialog = styled(MuiDialog)({ flex: 1, alignItems: 'flex-start', alignContent: 'flex-start', alignSelf: 'flex-start' });

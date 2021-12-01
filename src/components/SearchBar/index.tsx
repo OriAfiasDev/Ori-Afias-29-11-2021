@@ -1,10 +1,13 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import { useDebounce } from '../../hooks/useDebounce';
 import { getLocationAutocomplete } from '../../api';
-import { CircularProgress, Dialog, IconButton, InputAdornment, InputLabel, OutlinedInput, TextField } from '@mui/material';
+import { Button } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
-import { BlurredBackdrop, Container, Form } from './Search.styled';
+import { Dialog, Form } from './Search.styled';
 import { SearchResults } from './SearchResults';
+import { Box } from '@mui/system';
+import { Input } from '../shared/Input';
+import DialogContent from '@mui/material/DialogContent';
 
 interface Props {
 	searchTerm: string;
@@ -13,22 +16,9 @@ interface Props {
 
 export const SearchBar: React.FC<Props> = ({ searchTerm, setSearchTerm }) => {
 	const [loading, setLoading] = useState<boolean>(false);
-	const [dialogOpen, setDialogOpen] = useState(false)
+	const [dialogOpen, setDialogOpen] = useState(false);
 	const [cities, setCities] = useState<{ name: string; country: string; key: string }[]>([]);
 	const debounced = useDebounce(searchTerm);
-	const ref = useRef<MutableRefObject<HTMLInputElement>>(null!)
-	
-	const openDialog = () => {
-		setDialogOpen(true)
-		setTimeout(() => {
-
-			ref.current.focus()
-		}, [500])
-	}
-
-	useEffect(() => {
-		setLoading(searchTerm !== debounced);
-	}, [searchTerm]);
 
 	useEffect(() => {
 		(async () => {
@@ -42,50 +32,43 @@ export const SearchBar: React.FC<Props> = ({ searchTerm, setSearchTerm }) => {
 				setLoading(false);
 			}
 		})();
+		// eslint-disable-next-line
 	}, [debounced]);
-	
+
+	useEffect(() => {
+		setLoading(searchTerm !== debounced);
+	}, [searchTerm, debounced]);
+
+	const openDialog = () => {
+		setDialogOpen(true);
+	};
+
+	const onResultSelected = (result: string) => {
+		setSearchTerm(result);
+		setDialogOpen(false);
+	};
+
 	return (
-		<>
-		<Container>
-			<Form variant='outlined'>
-				<InputLabel htmlFor='search-bar2'>Find City</InputLabel>
-				<OutlinedInput onClick={openDialog} autoComplete='none'
-				
-					label='Find City'
-					id='search-bar2'
-					type='text'
-					value={searchTerm}
-					onChange={e => setSearchTerm(e.target.value)}
-					endAdornment={
-						<InputAdornment position='end'>
-							<IconButton edge='end'>{loading ? <CircularProgress color='secondary' size={18} /> : <SearchIcon />}</IconButton>
-						</InputAdornment>
-					}
-					/>
-			</Form>
-			<SearchResults results={cities} onResultClicked={console.log} />
-		</Container>
-		<Dialog onClose={() => setDialogOpen(false)} BackdropComponent={BlurredBackdrop} open={dialogOpen || !!searchTerm} fullWidth maxWidth='sm' transitionDuration={300} PaperProps={{sx: { bgcolor: 'transparent'}}} >
-		<Container>
-			<Form variant='outlined'>
-				<InputLabel htmlFor='search-bar'>Find City</InputLabel>
-				<OutlinedInput 
-				ref={ref}
-					label='Find City'
-					id='search-bar'
-					type='text'
-					value={searchTerm}
-					onChange={e => setSearchTerm(e.target.value)}
-					endAdornment={
-						<InputAdornment position='end'>
-							<IconButton edge='end'>{loading ? <CircularProgress color='secondary' size={18} /> : <SearchIcon />}</IconButton>
-						</InputAdornment>
-					}
-					/>
-			</Form>
-			<SearchResults results={cities} onResultClicked={console.log} />
-		</Container>
-					</Dialog>
-					</>
+		<Box>
+			{!dialogOpen && (
+				<Button variant='outlined' startIcon={<SearchIcon />} onClick={openDialog}>
+					{searchTerm || 'Find City'}
+				</Button>
+			)}
+			<Dialog
+				onClose={() => setDialogOpen(false)}
+				open={dialogOpen}
+				fullWidth
+				maxWidth='sm'
+				transitionDuration={300}
+				PaperProps={{ sx: { bgcolor: 'transparent' } }}>
+				<DialogContent>
+					<Form variant='outlined'>
+						<Input Icon={SearchIcon} label='Find City' value={searchTerm} setValue={setSearchTerm} loading={loading} onClick={openDialog} />
+					</Form>
+					<SearchResults results={cities} onResultClicked={onResultSelected} />
+				</DialogContent>
+			</Dialog>
+		</Box>
 	);
 };
