@@ -62,9 +62,9 @@ export const SearchBar: React.FC<Props> = ({ searchTerm, setSearchTerm }) => {
 				open={dialogOpen}
 				fullWidth
 				maxWidth='sm'
-				transitionDuration={300}
-				PaperProps={{ sx: { bgcolor: 'transparent' } }}>
-				<DialogContent>
+				transitionDuration={500} >
+				
+				<DialogContent >
 					<Form variant='outlined'>
 						<Input Icon={SearchIcon} label='Find City' value={searchTerm} setValue={setSearchTerm} loading={loading} onClick={openDialog} />
 					</Form>

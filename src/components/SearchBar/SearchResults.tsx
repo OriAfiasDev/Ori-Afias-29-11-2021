@@ -14,7 +14,7 @@ export const SearchResults: React.FC<Props> = ({ results, onResultClicked }) => 
 					<div onClick={() => onResultClicked(res.key)} key={res.key}>
 						<ListItem>
 							<ListItemAvatar>
-								<Avatar>{res.country}</Avatar>
+								<Avatar variant='rounded' sx={{color: 'text.primary'}}>{res.country}</Avatar>
 							</ListItemAvatar>
 							<ListItemText primary={res.name} />
 						</ListItem>

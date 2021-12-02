@@ -15,8 +15,9 @@ export const ThemeProvider: React.FC = ({ children }) => {
 				success: { main: '#2bb032' },
 				background: {
 					default: '#27293d',
-					paper: '#27293d',
+					paper: '#0a1929',
 				},
+				text: { primary: '#fff', secondary: '#aaa'}
 			},
 		}),
 

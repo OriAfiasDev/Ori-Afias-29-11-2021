@@ -9,12 +9,13 @@ export const ListItemNoHover = styled(MuiLI)(({ theme }) => ({
 	backgroundColor: theme.palette.secondary,
 	cursor: 'pointer',
 	borderRadius: 10,
+	transition: 'background-color 1s'
 }));
 
 export const ListItem = styled(ListItemNoHover)`
 	&:hover {
-		background-color: #ccc;
+		background-color: #777;
 	}
 `;
 
-export const Dialog = styled(MuiDialog)({ flex: 1, alignItems: 'flex-start', alignContent: 'flex-start', alignSelf: 'flex-start' });
+export const Dialog = styled(MuiDialog)({ flex: 1, alignItems: 'flex-start', alignContent: 'flex-start', alignSelf: 'flex-start'});

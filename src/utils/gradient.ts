@@ -4,5 +4,5 @@ export const getGradientByWeather = (variant: 'hot' | 'cold') => {
 		cold: ['#00d4ff', '#090979', '#020024'],
 	};
 
-	return `linear-gradient(90deg, ${colors[variant][0]} 0%, ${colors[variant][1]} 35%, ${colors[variant][2]} 100%)`;
+	return `linear-gradient(90deg, ${colors[variant][0]} 0%, ${colors[variant][1]} 50%, ${colors[variant][2]} 100%)`;
 };

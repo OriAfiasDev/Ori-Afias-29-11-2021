@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { getCurrentWeather } from '../../api';
 import { CurrentWeatherResult } from '../../models/CurrentWeather';
 import { degreesSelector, selectedCitySelector } from '../../redux/selectors';
+import { getGradientByWeather } from '../../utils/gradient';
 import { Expandable } from '../shared/Expandable';
 import { Row } from './CurrentWeatherCard.styled';
 
@@ -22,19 +23,17 @@ export const CurrentWeatherCard: React.FC = () => {
 	return (
 		currentWeather && (
 			<Container>
-				<Expandable
+				<Expandable background={getGradientByWeather(Math.round(Math.random()) ? 'cold' : 'hot')}
 					beforeCollapse={
-						<div>
 							<Row>
 								<Typography variant='h1'>{currentWeather.Temperature[degrees === 'C' ? 'Metric' : 'Imperial'].Value}°</Typography>
+								{/* <img alt={currentWeather.WeatherText} src={`../../assets/icons/${currentWeather.WeatherIcon}.png`} height={45} width={75} /> */}
 								<div>
-									<Typography variant='subtitle1'>{new Date(currentWeather.LocalObservationDateTime).toLocaleString('he-IL')}</Typography>
+									<Typography variant='subtitle1'>{new Date(currentWeather.LocalObservationDateTime).toLocaleDateString('he-IL')}</Typography>
 									<Typography variant='subtitle1'>{selectedCity.name}</Typography>
 									<Typography variant='subtitle1'>{currentWeather.WeatherText}</Typography>
 								</div>
-								<img alt={currentWeather.WeatherText} src={`../../assets/icons/${currentWeather.WeatherIcon}.png`} height={50} width={50} />
 							</Row>
-						</div>
 					}
 				/>
 			</Container>
