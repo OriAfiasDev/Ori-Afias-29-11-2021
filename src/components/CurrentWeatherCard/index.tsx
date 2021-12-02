@@ -23,17 +23,17 @@ export const CurrentWeatherCard: React.FC = () => {
 	return (
 		currentWeather && (
 			<Container>
-				<Expandable background={getGradientByWeather(Math.round(Math.random()) ? 'cold' : 'hot')}
+				<Expandable
 					beforeCollapse={
-							<Row>
-								<Typography variant='h1'>{currentWeather.Temperature[degrees === 'C' ? 'Metric' : 'Imperial'].Value}°</Typography>
-								{/* <img alt={currentWeather.WeatherText} src={`../../assets/icons/${currentWeather.WeatherIcon}.png`} height={45} width={75} /> */}
-								<div>
-									<Typography variant='subtitle1'>{new Date(currentWeather.LocalObservationDateTime).toLocaleDateString('he-IL')}</Typography>
-									<Typography variant='subtitle1'>{selectedCity.name}</Typography>
-									<Typography variant='subtitle1'>{currentWeather.WeatherText}</Typography>
-								</div>
-							</Row>
+						<Row>
+							<Typography variant='h1'>{currentWeather.Temperature[degrees === 'C' ? 'Metric' : 'Imperial'].Value}°</Typography>
+							{/* <img alt={currentWeather.WeatherText} src={`../../assets/icons/${currentWeather.WeatherIcon}.png`} height={45} width={75} /> */}
+							<div>
+								<Typography variant='subtitle1'>{new Date(currentWeather.LocalObservationDateTime).toLocaleDateString('he-IL')}</Typography>
+								<Typography variant='subtitle1'>{selectedCity.name}</Typography>
+								<Typography variant='subtitle1'>{currentWeather.WeatherText}</Typography>
+							</div>
+						</Row>
 					}
 				/>
 			</Container>

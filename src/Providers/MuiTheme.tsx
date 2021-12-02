@@ -10,21 +10,21 @@ export const ThemeProvider: React.FC = ({ children }) => {
 		dark: createTheme({
 			palette: {
 				mode: 'dark',
-				primary: { main: '#0a1929' },
+				primary: { main: '#0a1929', light: '#bbb' },
 				secondary: { main: '#fff' },
 				success: { main: '#2bb032' },
 				background: {
 					default: '#27293d',
 					paper: '#0a1929',
 				},
-				text: { primary: '#fff', secondary: '#aaa'}
+				text: { primary: '#000', secondary: '#aaa' },
 			},
 		}),
 
 		light: createTheme({
 			palette: {
 				mode: 'light',
-				primary: { main: '#edc210' },
+				primary: { main: '#edc210', light: '#0a1929' },
 				secondary: { main: '#001e3c' },
 				success: { main: '#2bb032' },
 				background: {

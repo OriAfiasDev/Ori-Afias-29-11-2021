@@ -7,16 +7,15 @@ interface Props {
 	beforeCollapse?: React.ReactNode;
 	insideCollapse?: React.ReactNode;
 	defaultClosed?: boolean;
-	background: string;
 }
 
-export const Expandable: React.FC<Props> = ({ beforeCollapse, insideCollapse, defaultClosed,background }) => {
+export const Expandable: React.FC<Props> = ({ beforeCollapse, insideCollapse, defaultClosed }) => {
 	const [open, setOpen] = useState(!defaultClosed);
 
 	const toggleOpen = () => setOpen(cur => !cur);
 
 	return (
-		<Container sx={{ background }}>
+		<Container sx={{ backgroundColor: 'primary.light', boxShadow: 3 }}>
 			<Content>
 				{beforeCollapse}
 				<Collapse in={open} timeout='auto'>

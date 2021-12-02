@@ -1,7 +1,7 @@
 import { Card, CardActions, CardContent, IconButton, IconButtonProps } from '@mui/material';
 import { styled } from '@mui/system';
 
-export const Container = styled(Card)({ borderRadius: 10, boxShadow: 'rgba(0, 0, 0, 0.35) 0px 1px 5px' });
+export const Container = styled(Card)({ borderRadius: 10 });
 
 export const Content = styled(CardContent)({ paddingTop: 0, paddingBottom: 0, marginTop: 0, marginBottom: 0 });
 
