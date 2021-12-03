@@ -8,6 +8,7 @@ import { SearchResults } from './SearchResults';
 import { Box } from '@mui/system';
 import { Input } from '../shared/Input';
 import DialogContent from '@mui/material/DialogContent';
+import { AutoCompleteResult } from '../../models/LocationAutoComplete';
 
 interface Props {
 	searchTerm: string;
@@ -17,7 +18,7 @@ interface Props {
 export const SearchBar: React.FC<Props> = ({ searchTerm, setSearchTerm }) => {
 	const [loading, setLoading] = useState<boolean>(false);
 	const [dialogOpen, setDialogOpen] = useState(false);
-	const [cities, setCities] = useState<{ name: string; country: string; key: string }[]>([]);
+	const [cities, setCities] = useState<AutoCompleteResult[]>([]);
 	const debounced = useDebounce(searchTerm);
 
 	useEffect(() => {
@@ -52,19 +53,12 @@ export const SearchBar: React.FC<Props> = ({ searchTerm, setSearchTerm }) => {
 
 	return (
 		<Box>
-			{!dialogOpen && (
-				<Button variant='outlined' startIcon={<SearchIcon />} onClick={openDialog}>
-					{searchTerm || 'Find City'}
-				</Button>
-			)}
-			<Dialog
-				onClose={() => setDialogOpen(false)}
-				open={dialogOpen}
-				fullWidth
-				maxWidth='sm'
-				transitionDuration={500} >
-				
-				<DialogContent >
+			<Button sx={{ width: '100%' }} variant='outlined' startIcon={<SearchIcon />} onClick={openDialog}>
+				{searchTerm || 'Find City'}
+			</Button>
+
+			<Dialog onClose={() => setDialogOpen(false)} open={dialogOpen} fullWidth maxWidth='sm' transitionDuration={500}>
+				<DialogContent>
 					<Form variant='outlined'>
 						<Input Icon={SearchIcon} label='Find City' value={searchTerm} setValue={setSearchTerm} loading={loading} onClick={openDialog} />
 					</Form>

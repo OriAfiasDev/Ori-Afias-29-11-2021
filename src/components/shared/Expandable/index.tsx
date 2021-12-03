@@ -1,6 +1,6 @@
-import { Collapse } from '@mui/material';
+import { CardContent, Collapse, Divider } from '@mui/material';
 import { useState } from 'react';
-import { Container, Content, ExpandMore, Actions } from './Expandable.styled';
+import { Container, ExpandMore, Actions } from './Expandable.styled';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 interface Props {
@@ -16,12 +16,15 @@ export const Expandable: React.FC<Props> = ({ beforeCollapse, insideCollapse, de
 
 	return (
 		<Container sx={{ backgroundColor: 'primary.light', boxShadow: 3 }}>
-			<Content>
+			<CardContent>
 				{beforeCollapse}
-				<Collapse in={open} timeout='auto'>
-					{insideCollapse}
-				</Collapse>
-			</Content>
+				{insideCollapse && (
+					<Collapse in={open} timeout='auto'>
+						<Divider variant='middle' />
+						<CardContent>{insideCollapse}</CardContent>
+					</Collapse>
+				)}
+			</CardContent>
 
 			{insideCollapse && (
 				<Actions>

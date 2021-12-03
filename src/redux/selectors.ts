@@ -1,10 +1,10 @@
-import { Degrees } from './reducers/degrees';
+import { DegreeSystem } from './reducers/degrees';
 import { SelectedCity } from './reducers/selectedCity';
 import { Theme } from './reducers/theme';
 
 interface State {
 	theme: Theme;
-	degrees: Degrees;
+	degrees: DegreeSystem;
 	selectedCity: SelectedCity;
 }
 

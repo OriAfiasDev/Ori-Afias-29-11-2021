@@ -1,11 +1,17 @@
 import { Action, reduxTypes } from '..';
 
-export type Degrees = 'C' | 'F';
+export interface DegreeSystem {
+	sign: 'C' | 'F';
+	system: 'Metric' | 'Imperial';
+}
 
-export const degreesReducer = (state: Degrees = 'C', action: Action<null>) => {
+const imperial = { sign: 'F', system: 'Imperial' };
+const metric = { sign: 'C', system: 'Metric' };
+
+export const degreesReducer = (state: DegreeSystem = { sign: 'C', system: 'Metric' }, action: Action<null>) => {
 	switch (action.type) {
 		case reduxTypes.SET_DEGREES:
-			return state === 'C' ? 'F' : 'C';
+			return state.sign === 'C' ? imperial : metric;
 		default:
 			return state;
 	}
