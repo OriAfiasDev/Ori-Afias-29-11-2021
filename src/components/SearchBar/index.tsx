@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
+import DialogContent from '@mui/material/DialogContent';
+import { Button } from '@mui/material';
+import { Box } from '@mui/system';
+import SearchIcon from '@mui/icons-material/Search';
 import { useDebounce } from '../../hooks/useDebounce';
 import { getCurrentWeather, getLocationAutocomplete } from '../../api';
-import { Button } from '@mui/material';
-import SearchIcon from '@mui/icons-material/Search';
 import { Dialog, Form } from './Search.styled';
 import { SearchResults } from './SearchResults';
-import { Box } from '@mui/system';
 import { Input } from '../shared/Input';
-import DialogContent from '@mui/material/DialogContent';
 import { AutoCompleteResult } from '../../models/LocationAutoComplete';
 
 interface Props {

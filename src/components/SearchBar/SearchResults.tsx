@@ -12,19 +12,27 @@ export const SearchResults: React.FC<Props> = ({ results, onResultClicked }) => 
 		<Box>
 			<List>
 				{results.map(res => (
-					<div onClick={() => onResultClicked(res.Key)} key={res.Key}>
-						<ListItem>
-							<ListItemAvatar>
-								<Avatar variant='rounded' sx={{ color: 'text.primary' }}>
-									{res.Country.ID}
-								</Avatar>
-							</ListItemAvatar>
-							<ListItemText primary={res.LocalizedName} />
-						</ListItem>
-						<Divider variant='inset' />
-					</div>
+					<ResultItem result={res} onResultClicked={onResultClicked} key={res.Key} />
 				))}
 			</List>
 		</Box>
 	);
 };
+
+interface ResultItemProps {
+	result: AutoCompleteResult;
+	onResultClicked: (chosen: string) => void;
+}
+const ResultItem: React.FC<ResultItemProps> = ({ result, onResultClicked }) => (
+	<div onClick={() => onResultClicked(result.Key)}>
+		<ListItem>
+			<ListItemAvatar>
+				<Avatar variant='rounded' sx={{ color: 'text.primary' }}>
+					{result.Country.ID}
+				</Avatar>
+			</ListItemAvatar>
+			<ListItemText primary={result.LocalizedName} />
+		</ListItem>
+		<Divider variant='inset' />
+	</div>
+);

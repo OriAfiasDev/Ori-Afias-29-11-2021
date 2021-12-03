@@ -9,7 +9,7 @@ export const HomeScreen: React.FC = () => {
 	const [searchTerm, setSearchTerm] = useState('');
 	return (
 		<ScreenContainer sx={{ bgcolor: 'background.default' }}>
-			<Container>
+			<Container sx={{ mt: 2 }}>
 				<Grid container spacing={2}>
 					<Grid item xs={12}>
 						<SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />

@@ -1,14 +1,16 @@
 import { AppBar } from '@mui/material';
-import { HeaderContainer, Logo, Toolbar } from './Header.styled';
+import { Box } from '@mui/system';
+import { Logo } from '../shared/Logo';
+import { Toolbar } from './Header.styled';
 import { Nav } from './Nav';
 
 export const Header = () => (
-	<HeaderContainer>
-		<AppBar position='static' enableColorOnDark sx={{ height: 80, justifyContent: 'center' }}>
-			<Toolbar color='primary' sx={{ display: 'flex', alignItems: 'center' }}>
+	<Box sx={{ flexGrow: 1 }}>
+		<AppBar position='static' enableColorOnDark>
+			<Toolbar variant='regular'>
 				<Logo />
 				<Nav />
 			</Toolbar>
 		</AppBar>
-	</HeaderContainer>
+	</Box>
 );

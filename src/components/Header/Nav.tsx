@@ -1,16 +1,16 @@
 import * as React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { degreesSelector, themeSelector } from '../../redux/selectors';
+import { toggleDegrees } from '../../redux/actions/degrees';
 import { toggleTheme } from '../../redux/actions/theme';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import DeviceThermostatIcon from '@mui/icons-material/DeviceThermostat';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import HomeIcon from '@mui/icons-material/Home';
-import { toggleDegrees } from '../../redux/actions/degrees';
-import { Row } from '../shared/Row';
 import { NavIcon } from '../shared/Icon';
-import { useNavigate } from 'react-router-dom';
+import { Row } from '../shared/Row';
 
 export const Nav: React.FC = () => {
 	const navigate = useNavigate();
