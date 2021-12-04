@@ -16,6 +16,6 @@ export const ExpandMore = styled((props: ExpandMoreProps) => {
 	return <IconButton {...other} />;
 })(({ open }) => ({
 	transform: !open ? 'rotate(0deg)' : 'rotate(180deg)',
-	marginLeft: 'auto',
+	// marginLeft: 'auto',
 	transition: 'transform 0.2s',
 }));

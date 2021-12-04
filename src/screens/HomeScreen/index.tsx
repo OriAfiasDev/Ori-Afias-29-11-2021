@@ -14,16 +14,11 @@ export const HomeScreen: React.FC = () => {
 					<Grid item xs={12}>
 						<SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
 					</Grid>
-					<Grid item xs={12}>
+					<Grid item xs={12} md={6}>
 						<CurrentWeatherCard />
 					</Grid>
 
-					<Grid item xs={12} md={6}>
-						<FiveDaysForecast />
-					</Grid>
-					<Grid item xs={12} md={6}>
-						<FiveDaysForecast />
-					</Grid>
+					<FiveDaysForecast />
 				</Grid>
 			</Container>
 		</ScreenContainer>

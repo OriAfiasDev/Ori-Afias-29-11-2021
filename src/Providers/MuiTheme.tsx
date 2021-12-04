@@ -31,6 +31,7 @@ export const ThemeProvider: React.FC = ({ children }) => {
 					default: '#aab4be',
 					paper: '#fff',
 				},
+				text: { primary: '#aaa', secondary: '#000' },
 			},
 		}),
 	};

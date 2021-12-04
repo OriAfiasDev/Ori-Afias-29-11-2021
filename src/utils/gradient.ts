@@ -6,3 +6,5 @@ export const getGradientByWeather = (variant: 'hot' | 'cold') => {
 
 	return `linear-gradient(90deg, ${colors[variant][0]} 0%, ${colors[variant][1]} 75%, ${colors[variant][2]} 100%)`;
 };
+
+export const DEGREE_SIGN = '°';

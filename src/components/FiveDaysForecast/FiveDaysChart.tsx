@@ -16,9 +16,9 @@ export const FiveDaysChart: React.FC<Props> = ({ dailyForecast }) => {
 			{
 				label: 'Min Temp',
 				data: dailyForecast.DailyForecasts.map(day => day.Temperature.Minimum.Value),
-				fill: false,
+				fill: true,
 				borderColor: 'rgba(75,192,192,1)',
-				backgroundColor: 'rgba(75,192,192,0.4)',
+				backgroundColor: 'rgba(75,192,192,0.1)',
 				tension: 0.3,
 			},
 			{

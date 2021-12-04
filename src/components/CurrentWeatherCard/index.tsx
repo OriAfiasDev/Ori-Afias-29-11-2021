@@ -7,6 +7,8 @@ import { Expandable } from '../shared/Expandable';
 import { CurrentWeatherMeta } from './CurrentWeatherMeta';
 import { CurrentWeatherInfo } from './CurrentWeatherInfo';
 import { CurrentWeatherMoreInfo } from './CurrentWeatherMoreInfo';
+import { Divider, IconButton } from '@mui/material';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 
 export const CurrentWeatherCard: React.FC = () => {
 	const selectedCity = useSelector(selectedCitySelector);
@@ -28,7 +30,17 @@ export const CurrentWeatherCard: React.FC = () => {
 						<CurrentWeatherInfo currentWeather={currentWeather} />
 					</div>
 				}
-				insideCollapse={<CurrentWeatherMoreInfo currentWeather={currentWeather} />}
+				insideCollapse={
+					<>
+						<Divider variant='middle' sx={{ mb: 4 }} />
+						<CurrentWeatherMoreInfo currentWeather={currentWeather} />
+					</>
+				}
+				moreActions={
+					<IconButton>
+						<FavoriteIcon />
+					</IconButton>
+				}
 			/>
 		)
 	);

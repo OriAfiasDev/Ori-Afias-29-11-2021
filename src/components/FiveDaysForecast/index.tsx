@@ -1,3 +1,4 @@
+import { Grid } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { getDailyForecast } from '../../api';
@@ -5,6 +6,7 @@ import { DailyForecast } from '../../models/DailyForecast';
 import { degreesSelector, selectedCitySelector } from '../../redux/selectors';
 import { Expandable } from '../shared/Expandable';
 import { FiveDaysChart } from './FiveDaysChart';
+import { FiveDaysList } from './FiveDaysList';
 
 export const FiveDaysForecast: React.FC = () => {
 	const selectedCity = useSelector(selectedCitySelector);
@@ -21,5 +23,24 @@ export const FiveDaysForecast: React.FC = () => {
 		// eslint-disable-next-line
 	}, [degrees, selectedCity]);
 
-	return dailyForecast[degrees.sign] && <Expandable insideCollapse={<FiveDaysChart dailyForecast={dailyForecast[degrees.sign]} />} />;
+	return (
+		dailyForecast[degrees.sign] && (
+			<>
+				<Grid item xs={12} md={6}>
+					<Expandable
+						sx={{ beforeCollapse: { display: 'flex', minHeight: 304 } }}
+						beforeCollapse={<FiveDaysChart dailyForecast={dailyForecast[degrees.sign]} />}
+					/>
+				</Grid>
+				<Grid item xs={12} md={12}>
+					<Expandable
+						sx={{ insideCollapse: { minHeight: 300, display: 'flex', overflowY: 'scroll' } }}
+						beforeCollapse={<FiveDaysList dailyForecast={dailyForecast[degrees.sign]} />}
+					/>
+				</Grid>
+			</>
+		)
+	);
+
+	// return dailyForecast[degrees.sign] && <Expandable insideCollapse={<FiveDaysChart dailyForecast={dailyForecast[degrees.sign]} />} />;
 };

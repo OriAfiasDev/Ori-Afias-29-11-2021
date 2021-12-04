@@ -17,7 +17,7 @@ interface Headline {
 	Link: string;
 }
 
-interface Forecast {
+export interface Forecast {
 	Date: string;
 	EpochDate: number;
 	Temperature: { Minimum: TemperatureValue; Maximum: TemperatureValue };
