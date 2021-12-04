@@ -6,7 +6,7 @@ import { Nav } from './Nav';
 
 export const Header = () => (
 	<Box sx={{ flexGrow: 1 }}>
-		<AppBar position='static' enableColorOnDark>
+		<AppBar position='fixed' enableColorOnDark>
 			<Toolbar variant='regular'>
 				<Logo />
 				<Nav />
