@@ -1,4 +1,4 @@
-import { CardContent, Collapse, IconButton } from '@mui/material';
+import { CardContent, Collapse } from '@mui/material';
 import { useState } from 'react';
 import { Container, ExpandMore, Actions } from './Expandable.styled';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';

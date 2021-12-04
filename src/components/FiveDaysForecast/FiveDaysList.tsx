@@ -1,7 +1,5 @@
 import { DailyForecast, Forecast } from '../../models/DailyForecast';
-import { Expandable } from '../shared/Expandable';
-import { Card, CardContent, CardHeader, Grid, IconButton, Tooltip, Typography } from '@mui/material';
-import { OverridableComponent } from '@mui/material/OverridableComponent';
+import { CardContent, CardHeader, Grid, IconButton, Tooltip, Typography } from '@mui/material';
 import { DEGREE_SIGN } from '../../utils/gradient';
 import { getDayString } from '../../utils/dayString';
 import { Row } from '../shared/Row';
