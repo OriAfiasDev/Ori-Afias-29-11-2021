@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { selectedCitySelector } from '../../redux/selectors';
+import { useDispatch, useSelector } from 'react-redux';
+import { favoritesSelector, selectedCitySelector } from '../../redux/selectors';
 import { getCurrentWeather } from '../../api';
 import { CurrentWeatherResult } from '../../models/CurrentWeather';
 import { Expandable } from '../shared/Expandable';
@@ -9,10 +9,15 @@ import { CurrentWeatherInfo } from './CurrentWeatherInfo';
 import { CurrentWeatherMoreInfo } from './CurrentWeatherMoreInfo';
 import { Divider, IconButton } from '@mui/material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import HeartBrokenIcon from '@mui/icons-material/HeartBroken';
+import { addToFavorites, removeFromFavorites } from '../../redux/actions/favorites';
 
 export const CurrentWeatherCard: React.FC = () => {
+	const dispatch = useDispatch();
 	const selectedCity = useSelector(selectedCitySelector);
+	const favorites = useSelector(favoritesSelector);
 	const [currentWeather, setCurrentWeather] = useState<CurrentWeatherResult>(null!);
+	const [isFav, setIsFav] = useState<boolean>(favorites.findIndex(fav => fav.Key === selectedCity.key) >= 0);
 
 	useEffect(() => {
 		(async () => {
@@ -20,6 +25,23 @@ export const CurrentWeatherCard: React.FC = () => {
 			setCurrentWeather(current[0]);
 		})();
 	}, [selectedCity]);
+
+	useEffect(() => {
+		setIsFav(favorites.findIndex(fav => fav.Key === selectedCity.key) >= 0);
+	}, [selectedCity]);
+
+	const toggleFavorite = () => {
+		const payload = {
+			Key: selectedCity.key,
+			name: selectedCity.name,
+			currentWeather: { Imperial: currentWeather.Temperature.Imperial.Value, Metric: currentWeather.Temperature.Metric.Value },
+		};
+		setIsFav(currentState => {
+			const updatedState = !currentState;
+			dispatch(currentState ? removeFromFavorites(payload) : addToFavorites(payload));
+			return updatedState;
+		});
+	};
 
 	return (
 		currentWeather && (
@@ -36,11 +58,7 @@ export const CurrentWeatherCard: React.FC = () => {
 						<CurrentWeatherMoreInfo currentWeather={currentWeather} />
 					</>
 				}
-				moreActions={
-					<IconButton>
-						<FavoriteIcon />
-					</IconButton>
-				}
+				moreActions={<IconButton onClick={toggleFavorite}>{isFav ? <HeartBrokenIcon /> : <FavoriteIcon />}</IconButton>}
 			/>
 		)
 	);

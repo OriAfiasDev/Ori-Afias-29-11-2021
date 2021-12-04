@@ -14,8 +14,8 @@ export const FiveDaysList: React.FC<Props> = ({ dailyForecast }) => {
 	return (
 		<Grid container spacing={1}>
 			{dailyForecast.DailyForecasts.map(day => (
-				<Grid item xs={6} md={2.4}>
-					<DayCard day={day} key={day.Date} />
+				<Grid item xs={6} md={2.4} key={day.Date}>
+					<DayCard day={day} />
 				</Grid>
 			))}
 		</Grid>

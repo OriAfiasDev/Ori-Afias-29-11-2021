@@ -28,15 +28,12 @@ export const FiveDaysForecast: React.FC = () => {
 			<>
 				<Grid item xs={12} md={6}>
 					<Expandable
-						sx={{ beforeCollapse: { display: 'flex', minHeight: 304 } }}
+						sx={{ beforeCollapse: { display: 'flex', minHeight: 292 } }}
 						beforeCollapse={<FiveDaysChart dailyForecast={dailyForecast[degrees.sign]} />}
 					/>
 				</Grid>
 				<Grid item xs={12} md={12}>
-					<Expandable
-						sx={{ insideCollapse: { minHeight: 300, display: 'flex', overflowY: 'scroll' } }}
-						beforeCollapse={<FiveDaysList dailyForecast={dailyForecast[degrees.sign]} />}
-					/>
+					<Expandable beforeCollapse={<FiveDaysList dailyForecast={dailyForecast[degrees.sign]} />} />
 				</Grid>
 			</>
 		)
