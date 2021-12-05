@@ -1,11 +1,8 @@
-import { Action, reduxTypes } from '..';
-import { SelectedCity } from './selectedCity';
+import { Action, Favorite, reduxTypes } from '../../models/redux';
 
-export interface Favorite extends SelectedCity {
-	currentWeather: { Metric: number; Imperial: number; icon: number | null; text: string };
-}
+const favorites: Favorite[] = JSON.parse(localStorage.getItem('fav') || '[]');
 
-export const favoritesReducer = (state: Favorite[] = JSON.parse(localStorage.getItem('fav') || '[]'), action: Action<Favorite>) => {
+export const favoritesReducer = (state: Favorite[] = favorites, action: Action<Favorite>) => {
 	let updatedState = state;
 	switch (action.type) {
 		case reduxTypes.ADD_FAVORITE:

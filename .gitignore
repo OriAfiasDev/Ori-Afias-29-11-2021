@@ -17,7 +17,9 @@
 .env.development.local
 .env.test.local
 .env.production.local
+
 apiKey.ts
+/*.json
 
 npm-debug.log*
 yarn-debug.log*

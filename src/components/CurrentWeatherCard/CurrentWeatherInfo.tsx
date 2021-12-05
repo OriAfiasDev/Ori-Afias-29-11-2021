@@ -3,8 +3,8 @@ import { Typography } from '@mui/material';
 import { degreesSelector } from '../../redux/selectors';
 import { CurrentWeatherResult } from '../../models/CurrentWeather';
 import { RowSpaceEvenly } from '../shared/Row';
-import { DEGREE_SIGN } from '../../utils/gradient';
 import { WeatherIcon } from '../shared/WeatherIcon';
+import { DEGREE_SIGN } from '../../utils/constants';
 
 interface Props {
 	currentWeather: CurrentWeatherResult;

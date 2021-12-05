@@ -1,12 +1,7 @@
-import { Action, reduxTypes } from '..';
+import { Action, DegreeSystem, reduxTypes } from '../../models/redux';
 
-export interface DegreeSystem {
-	sign: 'C' | 'F';
-	system: 'Metric' | 'Imperial';
-}
-
-const imperial = { sign: 'F', system: 'Imperial' };
-const metric = { sign: 'C', system: 'Metric' };
+const imperial: DegreeSystem = { sign: 'F', system: 'Imperial' };
+const metric: DegreeSystem = { sign: 'C', system: 'Metric' };
 
 export const degreesReducer = (state: DegreeSystem = { sign: 'C', system: 'Metric' }, action: Action<null>) => {
 	switch (action.type) {

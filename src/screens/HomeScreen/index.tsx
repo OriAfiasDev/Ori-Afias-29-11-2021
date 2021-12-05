@@ -2,7 +2,7 @@ import { Grid } from '@mui/material';
 import { CurrentWeatherCard } from '../../components/CurrentWeatherCard';
 import { FiveDaysForecast } from '../../components/FiveDaysForecast';
 import { SearchBar } from '../../components/SearchBar';
-import { Page } from '../../components/shared/ScreenContainer';
+import { Page } from '../../components/shared/Page';
 
 export const HomeScreen: React.FC = () => (
 	<Page>

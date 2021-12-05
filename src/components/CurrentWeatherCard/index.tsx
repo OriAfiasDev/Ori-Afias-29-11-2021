@@ -7,12 +7,12 @@ import { Expandable } from '../shared/Expandable';
 import { CurrentWeatherMeta } from './CurrentWeatherMeta';
 import { CurrentWeatherInfo } from './CurrentWeatherInfo';
 import { CurrentWeatherMoreInfo } from './CurrentWeatherMoreInfo';
-import { Divider, IconButton } from '@mui/material';
+import { CircularProgress, Divider, IconButton } from '@mui/material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import HeartBrokenIcon from '@mui/icons-material/HeartBroken';
 import { addToFavorites, removeFromFavorites } from '../../redux/actions/favorites';
-import { Favorite } from '../../redux/reducers/favorites';
 import { useSnackbar } from 'notistack';
+import { Favorite } from '../../models/redux';
 
 export const CurrentWeatherCard: React.FC = () => {
 	const dispatch = useDispatch();
@@ -21,10 +21,13 @@ export const CurrentWeatherCard: React.FC = () => {
 	const [currentWeather, setCurrentWeather] = useState<CurrentWeatherResult>(null!);
 	const [isFav, setIsFav] = useState<boolean>(favorites.findIndex(fav => fav.key === selectedCity.key) >= 0);
 	const snackbar = useSnackbar();
+	const [loading, setLoading] = useState<boolean>(false);
 
 	useEffect(() => {
 		(async () => {
+			setLoading(true);
 			const current = await getCurrentWeather(selectedCity.key);
+			setLoading(false);
 			if (!current) return snackbar.enqueueSnackbar('Oops, We could not get your weather.', { variant: 'error' });
 			setCurrentWeather(current[0]);
 		})();
@@ -51,7 +54,9 @@ export const CurrentWeatherCard: React.FC = () => {
 		});
 	};
 
-	return (
+	return loading ? (
+		<CircularProgress />
+	) : (
 		currentWeather && (
 			<Expandable
 				beforeCollapse={

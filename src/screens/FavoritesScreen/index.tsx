@@ -1,19 +1,22 @@
-import { Box } from '@mui/system';
-import { useSnackbar } from 'notistack';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { getCurrentWeather } from '../../api';
-import { Page } from '../../components/shared/ScreenContainer';
-import { SmallWeatherCard } from '../../components/SmallWeatherCard';
+import { useSnackbar } from 'notistack';
+import { Box } from '@mui/system';
 import { favoritesSelector } from '../../redux/selectors';
+import { getCurrentWeather } from '../../api';
+import { Page } from '../../components/shared/Page';
+import { SmallWeatherCard } from '../../components/SmallWeatherCard';
 
 export const FavoritesScreen: React.FC = () => {
 	const favorites = useSelector(favoritesSelector);
 	const snackbar = useSnackbar();
+	const [loading, setLoading] = useState<number>(-1);
 
 	useEffect(() => {
-		favorites.map(async fav => {
+		favorites.map(async (fav, index) => {
+			setLoading(index);
 			const res = await getCurrentWeather(fav.key);
+			setLoading(-1);
 			if (!res) {
 				return snackbar.enqueueSnackbar('Oops, we could not update the weather', { variant: 'error' });
 			}
@@ -31,9 +34,9 @@ export const FavoritesScreen: React.FC = () => {
 	}, []);
 	return (
 		<Page>
-			{favorites.map(fav => (
+			{favorites.map((fav, index) => (
 				<Box sx={{ my: 1 }} key={fav.key}>
-					<SmallWeatherCard city={fav} />
+					<SmallWeatherCard city={fav} loading={loading === index} />
 				</Box>
 			))}
 		</Page>

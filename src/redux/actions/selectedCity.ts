@@ -1,4 +1,3 @@
-import { reduxTypes } from '..';
-import { SelectedCity } from '../reducers/selectedCity';
+import { reduxTypes, SelectedCity } from '../../models/redux';
 
 export const setSelectedCity = (payload: SelectedCity) => ({ type: reduxTypes.SET_SELECTED_CITY, payload });

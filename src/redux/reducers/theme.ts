@@ -1,8 +1,8 @@
-import { Action, reduxTypes } from '..';
+import { Action, reduxTypes, Theme } from '../../models/redux';
 
-export type Theme = 'dark' | 'light';
+const defaultTheme: Theme = 'dark';
 
-export const themeReducer = (state: Theme = 'dark', action: Action<null>) => {
+export const themeReducer = (state: Theme = defaultTheme, action: Action<null>) => {
 	switch (action.type) {
 		case reduxTypes.SET_THEME:
 			return state === 'dark' ? 'light' : 'dark';

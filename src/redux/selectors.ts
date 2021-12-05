@@ -1,7 +1,4 @@
-import { DegreeSystem } from './reducers/degrees';
-import { Favorite } from './reducers/favorites';
-import { SelectedCity } from './reducers/selectedCity';
-import { Theme } from './reducers/theme';
+import { DegreeSystem, Favorite, SelectedCity, Theme } from '../models/redux';
 
 interface State {
 	theme: Theme;

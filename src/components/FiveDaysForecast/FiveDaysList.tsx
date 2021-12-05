@@ -1,10 +1,10 @@
 import { DailyForecast, Forecast } from '../../models/DailyForecast';
 import { CardContent, CardHeader, Grid, IconButton, Tooltip, Typography } from '@mui/material';
-import { DEGREE_SIGN } from '../../utils/gradient';
 import { getDayString } from '../../utils/dayString';
 import { Row } from '../shared/Row';
 import { ArrowDown, ArrowUp, DayContainer, DayIcon, NightIcon } from './FiveDaysForecast.styled';
 import React from 'react';
+import { DEGREE_SIGN } from '../../utils/constants';
 
 interface Props {
 	dailyForecast: DailyForecast;
