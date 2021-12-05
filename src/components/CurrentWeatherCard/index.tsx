@@ -31,7 +31,7 @@ export const CurrentWeatherCard: React.FC = () => {
 			if (!current) return snackbar.enqueueSnackbar('Oops, We could not get your weather.', { variant: 'error' });
 			setCurrentWeather(current[0]);
 		})();
-	}, [selectedCity]);
+	}, [selectedCity, snackbar]);
 
 	useEffect(() => {
 		setIsFav(favorites.findIndex(fav => fav.key === selectedCity.key) >= 0);
@@ -54,16 +54,18 @@ export const CurrentWeatherCard: React.FC = () => {
 		});
 	};
 
-	return loading ? (
-		<CircularProgress />
-	) : (
+	return (
 		currentWeather && (
 			<Expandable
 				beforeCollapse={
-					<div>
-						<CurrentWeatherMeta currentWeather={currentWeather} />
-						<CurrentWeatherInfo currentWeather={currentWeather} />
-					</div>
+					loading ? (
+						<CircularProgress />
+					) : (
+						<div>
+							<CurrentWeatherMeta currentWeather={currentWeather} />
+							<CurrentWeatherInfo currentWeather={currentWeather} />
+						</div>
+					)
 				}
 				insideCollapse={
 					<>

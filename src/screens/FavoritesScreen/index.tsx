@@ -31,6 +31,7 @@ export const FavoritesScreen: React.FC = () => {
 				},
 			};
 		});
+		// eslint-disable-next-line
 	}, []);
 	return (
 		<Page>

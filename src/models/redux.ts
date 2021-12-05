@@ -3,6 +3,11 @@ export interface DegreeSystem {
 	system: 'Metric' | 'Imperial';
 }
 
+export interface Coords {
+	latitude: number;
+	longitude: number;
+}
+
 export type SelectedCity = { name: string; country: string; key: string };
 
 export interface Favorite extends SelectedCity {
@@ -23,4 +28,5 @@ export enum reduxTypes {
 	ADD_FAVORITE = 'ADD_FAVORITE',
 	REMOVE_FAVORITE = 'REMOVE_FAVORITE',
 	CLEAR_FAVORITE = 'CLEAR_FAVORITE',
+	SET_COORDS = 'SET_COORDS',
 }
