@@ -1,26 +1,24 @@
-import { Container, Grid } from '@mui/material';
+import { Grid } from '@mui/material';
 import { useState } from 'react';
 import { CurrentWeatherCard } from '../../components/CurrentWeatherCard';
 import { FiveDaysForecast } from '../../components/FiveDaysForecast';
 import { SearchBar } from '../../components/SearchBar';
-import { ScreenContainer } from './HomeScreen.styled';
+import { Page } from '../../components/shared/ScreenContainer';
 
 export const HomeScreen: React.FC = () => {
 	const [searchTerm, setSearchTerm] = useState('');
 	return (
-		<ScreenContainer sx={{ bgcolor: 'background.default' }}>
-			<Container sx={{ mt: 2 }}>
-				<Grid container spacing={2}>
-					<Grid item xs={12}>
-						<SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-					</Grid>
-					<Grid item xs={12} md={6}>
-						<CurrentWeatherCard />
-					</Grid>
-
-					<FiveDaysForecast />
+		<Page>
+			<Grid container spacing={2}>
+				<Grid item xs={12}>
+					<SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
 				</Grid>
-			</Container>
-		</ScreenContainer>
+				<Grid item xs={12} md={6}>
+					<CurrentWeatherCard />
+				</Grid>
+
+				<FiveDaysForecast />
+			</Grid>
+		</Page>
 	);
 };

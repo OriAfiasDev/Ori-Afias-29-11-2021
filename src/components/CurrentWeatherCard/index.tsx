@@ -11,13 +11,14 @@ import { Divider, IconButton } from '@mui/material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import HeartBrokenIcon from '@mui/icons-material/HeartBroken';
 import { addToFavorites, removeFromFavorites } from '../../redux/actions/favorites';
+import { Favorite } from '../../redux/reducers/favorites';
 
 export const CurrentWeatherCard: React.FC = () => {
 	const dispatch = useDispatch();
 	const selectedCity = useSelector(selectedCitySelector);
 	const favorites = useSelector(favoritesSelector);
 	const [currentWeather, setCurrentWeather] = useState<CurrentWeatherResult>(null!);
-	const [isFav, setIsFav] = useState<boolean>(favorites.findIndex(fav => fav.Key === selectedCity.key) >= 0);
+	const [isFav, setIsFav] = useState<boolean>(favorites.findIndex(fav => fav.key === selectedCity.key) >= 0);
 
 	useEffect(() => {
 		(async () => {
@@ -27,14 +28,18 @@ export const CurrentWeatherCard: React.FC = () => {
 	}, [selectedCity]);
 
 	useEffect(() => {
-		setIsFav(favorites.findIndex(fav => fav.Key === selectedCity.key) >= 0);
-	}, [selectedCity]);
+		setIsFav(favorites.findIndex(fav => fav.key === selectedCity.key) >= 0);
+	}, [selectedCity, favorites]);
 
 	const toggleFavorite = () => {
-		const payload = {
-			Key: selectedCity.key,
-			name: selectedCity.name,
-			currentWeather: { Imperial: currentWeather.Temperature.Imperial.Value, Metric: currentWeather.Temperature.Metric.Value },
+		const payload: Favorite = {
+			...selectedCity,
+			currentWeather: {
+				Imperial: currentWeather.Temperature.Imperial.Value,
+				Metric: currentWeather.Temperature.Metric.Value,
+				icon: currentWeather.WeatherIcon,
+				text: currentWeather.WeatherText,
+			},
 		};
 		setIsFav(currentState => {
 			const updatedState = !currentState;

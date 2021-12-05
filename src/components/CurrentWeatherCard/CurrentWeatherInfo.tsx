@@ -4,6 +4,7 @@ import { degreesSelector } from '../../redux/selectors';
 import { CurrentWeatherResult } from '../../models/CurrentWeather';
 import { RowSpaceEvenly } from '../shared/Row';
 import { DEGREE_SIGN } from '../../utils/gradient';
+import { WeatherIcon } from '../shared/WeatherIcon';
 
 interface Props {
 	currentWeather: CurrentWeatherResult;
@@ -17,7 +18,7 @@ export const CurrentWeatherInfo: React.FC<Props> = ({ currentWeather }) => {
 					{currentWeather.Temperature[degrees.system].Value}
 					{DEGREE_SIGN}
 				</Typography>
-				<img src={`../../assets/icons/${currentWeather.WeatherIcon}.png`} alt={currentWeather.WeatherText} />
+				<WeatherIcon iconNumber={currentWeather.WeatherIcon} alt={currentWeather.WeatherText} />
 			</RowSpaceEvenly>
 			<div>
 				<Typography variant='subtitle2'>{currentWeather.WeatherText}</Typography>

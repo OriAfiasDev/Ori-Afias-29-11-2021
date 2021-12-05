@@ -1,9 +1,8 @@
 import { Action, reduxTypes } from '..';
+import { SelectedCity } from './selectedCity';
 
-export interface Favorite {
-	name: string;
-	Key: string;
-	currentWeather: { Metric: number; Imperial: number };
+export interface Favorite extends SelectedCity {
+	currentWeather: { Metric: number; Imperial: number; icon: number | null; text: string };
 }
 
 export const favoritesReducer = (state: Favorite[] = JSON.parse(localStorage.getItem('fav') || '[]'), action: Action<Favorite>) => {
@@ -14,7 +13,7 @@ export const favoritesReducer = (state: Favorite[] = JSON.parse(localStorage.get
 			localStorage.setItem('fav', JSON.stringify(updatedState));
 			return updatedState;
 		case reduxTypes.REMOVE_FAVORITE:
-			updatedState = state.filter(fav => fav.Key !== action.payload.Key);
+			updatedState = state.filter(fav => fav.key !== action.payload.key);
 			localStorage.setItem('fav', JSON.stringify(updatedState));
 			return updatedState;
 		case reduxTypes.CLEAR_FAVORITE:

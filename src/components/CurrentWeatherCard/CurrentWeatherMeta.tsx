@@ -4,7 +4,8 @@ import { Typography } from '@mui/material';
 import PlaceIcon from '@mui/icons-material/Place';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import { CurrentWeatherResult } from '../../models/CurrentWeather';
-import { Row, RowSpaceBetween } from '../shared/Row';
+import { Row } from '../shared/Row';
+import { MetaRow } from './CurrentWeatherCard.styled';
 
 interface Props {
 	currentWeather: CurrentWeatherResult;
@@ -13,7 +14,7 @@ interface Props {
 export const CurrentWeatherMeta: React.FC<Props> = ({ currentWeather }) => {
 	const selectedCity = useSelector(selectedCitySelector);
 	return (
-		<RowSpaceBetween>
+		<MetaRow>
 			<Row>
 				<PlaceIcon />
 				<Typography variant='subtitle1'>
@@ -24,6 +25,6 @@ export const CurrentWeatherMeta: React.FC<Props> = ({ currentWeather }) => {
 				<Typography variant='subtitle1'>{new Date(currentWeather.LocalObservationDateTime).toLocaleString('he-IL')}</Typography>
 				<AccessTimeIcon />
 			</Row>
-		</RowSpaceBetween>
+		</MetaRow>
 	);
 };
