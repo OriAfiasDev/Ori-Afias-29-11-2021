@@ -12,6 +12,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import HeartBrokenIcon from '@mui/icons-material/HeartBroken';
 import { addToFavorites, removeFromFavorites } from '../../redux/actions/favorites';
 import { Favorite } from '../../redux/reducers/favorites';
+import { useSnackbar } from 'notistack';
 
 export const CurrentWeatherCard: React.FC = () => {
 	const dispatch = useDispatch();
@@ -19,10 +20,12 @@ export const CurrentWeatherCard: React.FC = () => {
 	const favorites = useSelector(favoritesSelector);
 	const [currentWeather, setCurrentWeather] = useState<CurrentWeatherResult>(null!);
 	const [isFav, setIsFav] = useState<boolean>(favorites.findIndex(fav => fav.key === selectedCity.key) >= 0);
+	const snackbar = useSnackbar();
 
 	useEffect(() => {
 		(async () => {
 			const current = await getCurrentWeather(selectedCity.key);
+			if (!current) return snackbar.enqueueSnackbar('Oops, We could not get your weather.', { variant: 'error' });
 			setCurrentWeather(current[0]);
 		})();
 	}, [selectedCity]);

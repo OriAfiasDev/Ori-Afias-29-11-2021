@@ -12,7 +12,7 @@ interface Props {
 export const NavIcon: React.FC<Props> = ({ onClick, Icon, badgeContent }) => {
 	return (
 		<Container>
-			<Button color='secondary' onClick={onClick}>
+			<Button sx={{ color: 'text.primary' }} onClick={onClick}>
 				<Badge badgeContent={badgeContent} color='secondary'>
 					<Icon />
 				</Badge>

@@ -5,7 +5,7 @@ import { List, ListItem } from './Search.styled';
 
 interface Props {
 	results: AutoCompleteResult[];
-	onResultClicked: (chosen: string) => void;
+	onResultClicked: (chosen: AutoCompleteResult) => void;
 }
 export const SearchResults: React.FC<Props> = ({ results, onResultClicked }) => {
 	return (
@@ -21,10 +21,10 @@ export const SearchResults: React.FC<Props> = ({ results, onResultClicked }) => 
 
 interface ResultItemProps {
 	result: AutoCompleteResult;
-	onResultClicked: (chosen: string) => void;
+	onResultClicked: (chosen: AutoCompleteResult) => void;
 }
 const ResultItem: React.FC<ResultItemProps> = ({ result, onResultClicked }) => (
-	<div onClick={() => onResultClicked(result.Key)}>
+	<div onClick={() => onResultClicked(result)}>
 		<ListItem>
 			<ListItemAvatar>
 				<Avatar variant='rounded' sx={{ color: 'text.primary' }}>

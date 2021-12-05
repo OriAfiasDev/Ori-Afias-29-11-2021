@@ -17,7 +17,7 @@ export const Expandable: React.FC<Props> = ({ beforeCollapse, insideCollapse, de
 	const toggleOpen = () => setOpen(cur => !cur);
 
 	return (
-		<Container sx={{ backgroundColor: 'primary.light', boxShadow: 3, ...sx?.container }}>
+		<Container sx={{ backgroundColor: 'primary', boxShadow: 3, ...sx?.container }}>
 			<CardContent sx={sx?.beforeCollapse}>{beforeCollapse}</CardContent>
 			{insideCollapse && (
 				<Collapse in={open} timeout='auto'>

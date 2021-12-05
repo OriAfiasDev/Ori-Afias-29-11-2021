@@ -34,8 +34,11 @@ export const DayCard: React.FC<DayProps> = ({ day }) => {
 		<TwoTemps first={{ text: day.Day.IconPhrase, icon: <DayIcon /> }} second={{ text: day.Night.IconPhrase, icon: <NightIcon /> }} />
 	);
 	return (
-		<DayContainer>
-			<CardHeader subheaderTypographyProps={{ align: 'center' }} subheader={`${getDayString(date.getDay())} | ${date.toLocaleDateString('he-IL')}`} />
+		<DayContainer sx={{ bgcolor: 'background.default' }}>
+			<CardHeader
+				subheaderTypographyProps={{ align: 'center', sx: { color: 'text.primary' } }}
+				subheader={`${getDayString(date.getDay())} | ${date.toLocaleDateString('he-IL')}`}
+			/>
 			<CardContent sx={{ paddingTop: 0 }}>
 				<Grid container spacing={4}>
 					<Grid item sm={6}>

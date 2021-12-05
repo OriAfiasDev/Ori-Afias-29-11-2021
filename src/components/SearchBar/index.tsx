@@ -4,28 +4,30 @@ import { Button } from '@mui/material';
 import { Box } from '@mui/system';
 import SearchIcon from '@mui/icons-material/Search';
 import { useDebounce } from '../../hooks/useDebounce';
-import { getCurrentWeather, getLocationAutocomplete } from '../../api';
+import { getLocationAutocomplete } from '../../api';
 import { Dialog, Form } from './Search.styled';
 import { SearchResults } from './SearchResults';
 import { Input } from '../shared/Input';
 import { AutoCompleteResult } from '../../models/LocationAutoComplete';
+import { useDispatch } from 'react-redux';
+import { setSelectedCity } from '../../redux/actions/selectedCity';
+import { useSnackbar } from 'notistack';
 
-interface Props {
-	searchTerm: string;
-	setSearchTerm: (val: string) => void;
-}
-
-export const SearchBar: React.FC<Props> = ({ searchTerm, setSearchTerm }) => {
+export const SearchBar: React.FC = () => {
+	const [searchTerm, setSearchTerm] = useState('');
 	const [loading, setLoading] = useState<boolean>(false);
 	const [dialogOpen, setDialogOpen] = useState(false);
 	const [cities, setCities] = useState<AutoCompleteResult[]>([]);
 	const debounced = useDebounce(searchTerm);
+	const dispatch = useDispatch();
+	const snackbar = useSnackbar();
 
 	useEffect(() => {
 		(async () => {
 			if (searchTerm) {
 				setLoading(true);
 				const cities = await getLocationAutocomplete(debounced);
+				if (!cities) return snackbar.enqueueSnackbar('Oops, We could not fetch results. please try again later', { variant: 'error' });
 				setCities(cities);
 				setLoading(false);
 			} else {
@@ -44,22 +46,25 @@ export const SearchBar: React.FC<Props> = ({ searchTerm, setSearchTerm }) => {
 		setDialogOpen(true);
 	};
 
-	const onResultSelected = async (result: string) => {
-		// setSearchTerm(result);
-		const res = await getCurrentWeather(result);
-		console.log(res);
+	const onResultSelected = async (result: AutoCompleteResult) => {
+		setSearchTerm(result.LocalizedName);
+		dispatch(setSelectedCity({ country: result.Country.ID, key: result.Key, name: result.LocalizedName }));
 		setDialogOpen(false);
 	};
 
 	return (
 		<Box>
-			<Button sx={{ width: '100%' }} variant='outlined' startIcon={<SearchIcon />} onClick={openDialog}>
+			<Button
+				sx={{ width: '100%', py: 1, bgcolor: 'secondary.main', color: 'text.secondary' }}
+				variant='contained'
+				startIcon={<SearchIcon />}
+				onClick={openDialog}>
 				{searchTerm || 'Find City'}
 			</Button>
 
 			<Dialog onClose={() => setDialogOpen(false)} open={dialogOpen} fullWidth maxWidth='sm' transitionDuration={500}>
 				<DialogContent>
-					<Form variant='outlined'>
+					<Form variant='outlined' color='secondary'>
 						<Input Icon={SearchIcon} label='Find City' value={searchTerm} setValue={setSearchTerm} loading={loading} onClick={openDialog} />
 					</Form>
 					<SearchResults results={cities} onResultClicked={onResultSelected} />

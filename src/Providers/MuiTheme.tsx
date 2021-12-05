@@ -10,14 +10,14 @@ export const ThemeProvider: React.FC = ({ children }) => {
 		dark: createTheme({
 			palette: {
 				mode: 'dark',
-				primary: { main: '#0a1929', light: '#bbb' },
-				secondary: { main: '#fff' },
+				primary: { main: '#252c33', light: '#3a4750' },
+				secondary: { main: '#f6c90e', light: '#ffe88a' },
 				success: { main: '#2bb032' },
 				background: {
-					default: '#27293d',
+					default: '#252c33',
 					paper: '#0a1929',
 				},
-				text: { primary: '#000', secondary: '#aaa' },
+				text: { primary: '#eee', secondary: '#252c33' },
 			},
 		}),
 
@@ -31,7 +31,7 @@ export const ThemeProvider: React.FC = ({ children }) => {
 					default: '#aab4be',
 					paper: '#fff',
 				},
-				text: { primary: '#aaa', secondary: '#000' },
+				text: { primary: '#252c33', secondary: '#fff' },
 			},
 		}),
 	};

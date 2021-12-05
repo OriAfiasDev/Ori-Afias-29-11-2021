@@ -1,4 +1,5 @@
 import { Grid } from '@mui/material';
+import { useSnackbar } from 'notistack';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { getDailyForecast } from '../../api';
@@ -12,11 +13,15 @@ export const FiveDaysForecast: React.FC = () => {
 	const selectedCity = useSelector(selectedCitySelector);
 	const degrees = useSelector(degreesSelector);
 	const [dailyForecast, setDailyForecast] = useState<{ C: DailyForecast; F: DailyForecast }>({ C: null!, F: null! });
+	const snackbar = useSnackbar();
 
 	useEffect(() => {
 		(async () => {
 			if (!dailyForecast[degrees.sign]) {
 				const res = await getDailyForecast(selectedCity.key, degrees.sign === 'C');
+				if (!res) {
+					return snackbar.enqueueSnackbar('Oops, We could not get your weather.');
+				}
 				setDailyForecast(current => ({ ...current, [degrees.sign]: res }));
 			}
 		})();
@@ -38,6 +43,4 @@ export const FiveDaysForecast: React.FC = () => {
 			</>
 		)
 	);
-
-	// return dailyForecast[degrees.sign] && <Expandable insideCollapse={<FiveDaysChart dailyForecast={dailyForecast[degrees.sign]} />} />;
 };

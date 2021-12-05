@@ -8,7 +8,7 @@ export const Logo: React.FC<Props> = ({ variant }) => (
 	<Link to='/'>
 		<Typography variant={variant || 'h6'} component='span'>
 			Weat
-			<Typography variant={variant || 'h6'} component='span' sx={{ color: 'text.secondary' }}>
+			<Typography variant={variant || 'h6'} component='span'>
 				HEROLO
 			</Typography>
 		</Typography>

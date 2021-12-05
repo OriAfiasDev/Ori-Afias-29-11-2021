@@ -6,7 +6,7 @@ import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import ModeNightIcon from '@mui/icons-material/ModeNight';
 
-export const DayContainer = styled(Card)({ margin: '4px 0' });
+export const DayContainer = styled(Card)({ margin: '4px 0', borderRadius: 10 });
 
 export const ArrowUp = styled(ArrowUpwardIcon)({ color: 'rgb(255, 99, 132)' });
 export const ArrowDown = styled(ArrowDownwardIcon)({ color: 'rgba(75,192,192,1)' });
