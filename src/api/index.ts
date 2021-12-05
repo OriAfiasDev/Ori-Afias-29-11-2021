@@ -5,7 +5,7 @@ import apikey from './apiKey';
 import { DailyForecast } from '../models/DailyForecast';
 import { CityFromGeoLocation } from '../models/CityFromGeoLocation';
 
-const baseUrl = 'http://dataservice.accuweather.com';
+const baseUrl = 'https://dataservice.accuweather.com';
 const version = 'v1';
 
 const api = axios.create({
